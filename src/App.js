@@ -1,25 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import RouterService from "./pages/router/RouterService";
+import "./App.css";
 
-function App() {
+const App = () => {
+  const [showSidebar, setShowSidebar] = useState(true);
+
+  const toggleSidebar = () => setShowSidebar(!showSidebar);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <RouterService toggleSidebar={toggleSidebar} showSidebar={showSidebar} />
     </div>
   );
-}
+};
 
 export default App;
