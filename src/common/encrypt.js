@@ -1,7 +1,6 @@
 import CryptoJS from "crypto-js";
 
 export const getDecryptData = (encrypted) => {
-  console.log(encrypted, "encryptedencryptedencrypted");
 
   if (!encrypted || !encrypted.key || !encrypted.iv || !encrypted.content) {
     throw new Error("Invalid encrypted data");

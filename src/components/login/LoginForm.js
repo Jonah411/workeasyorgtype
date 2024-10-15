@@ -18,7 +18,6 @@ import {
 } from "@mui/material";
 import { Visibility, VisibilityOff, Clear } from "@mui/icons-material";
 import { CommonAlert } from "../../common/CommonAlert";
-import { getDecryptData } from "../../common/encrypt";
 
 const LoginForm = () => {
   const { data: orgData, isLoading: orgLoading } = useGetAllOrgQuery("", {
@@ -29,8 +28,8 @@ const LoginForm = () => {
   const [orgList, setOrgList] = useState([]);
   useEffect(() => {
     if (orgData) {
-      const userDatas = getDecryptData(orgData?.data);
-      setOrgList(JSON.parse(userDatas));
+      // const userDatas = getDecryptData(orgData?.data);
+      setOrgList(orgData?.data);
     }
   }, [orgData]);
 

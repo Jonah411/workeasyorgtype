@@ -3,6 +3,7 @@ import { BASE_URL } from "../../common/ConstaltsVariables";
 import { logout, selectRefreshToken, setToken } from "./authSlice";
 import { orgEndpoints } from "../Payload/orgEndpoints";
 import { authEndpoints } from "../Payload/authEndpoints";
+import { menuEndpoints } from "../Payload/menuEndpoints";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: `${BASE_URL}`,
@@ -45,6 +46,7 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
 const combinedEndpoints = (builder) => ({
   ...orgEndpoints(builder),
   ...authEndpoints(builder),
+  ...menuEndpoints(builder),
 });
 
 export const authApi = createApi({
@@ -54,4 +56,10 @@ export const authApi = createApi({
   endpoints: combinedEndpoints,
 });
 
-export const { useGetAllOrgQuery, useSigninMutation } = authApi;
+export const {
+  useGetAllOrgQuery,
+  useSigninMutation,
+  useGetAllMenuQuery,
+  useGetAllRollQuery,
+  useUpdateAllRollMutation,
+} = authApi;

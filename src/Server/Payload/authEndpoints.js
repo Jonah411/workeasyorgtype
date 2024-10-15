@@ -1,6 +1,7 @@
 import { CommonAlert } from "../../common/CommonAlert";
 import {
   orgData,
+  orgTypeData,
   rollData,
   setRefreshToken,
   setToken,
@@ -20,21 +21,15 @@ export const authEndpoints = (builder) => ({
     onQueryStarted: async (user, { dispatch, queryFulfilled }) => {
       try {
         const { data } = await queryFulfilled;
+        console.log(data);
 
         CommonAlert(data?.msg, "success");
         dispatch(setToken(data?.data?.token));
         dispatch(setRefreshToken(data?.data?.refreshToken));
         dispatch(orgData(data?.data?.userData?.Organization));
         dispatch(rollData(data?.data?.userData?.Roll));
-        dispatch(
-          userData({
-            _id: data?.data?.userData?._id,
-            name: data?.data?.userData?.name,
-            email: data?.data?.userData?.email,
-            gender: data?.data?.userData?.gender,
-            phoneNo: data?.data?.userData?.phoneNo,
-          })
-        );
+        dispatch(orgTypeData(data?.data?.userData?.orgtype));
+        dispatch(userData(data?.data?.userData));
       } catch (err) {
         console.error("Login failed: ", err);
       }
